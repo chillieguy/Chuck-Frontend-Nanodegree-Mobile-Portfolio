@@ -528,14 +528,16 @@ window.addEventListener('scroll', updatePositions);
 function createSlidingPizzas() {
   var cols = 8;
   var s = 256;
-  //
+  // Move out of loop to reduce step/calculation
   var slidingPizzaDiv = document.querySelector("#movingPizzas1");
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
+    // Try webp to reduce file size
     elem.src = "images/pizza_mini.webp";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
+    // Change to style.left to take advantage of transform.translateX
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     slidingPizzaDiv.appendChild(elem);
