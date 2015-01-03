@@ -1,5 +1,8 @@
 # Chuck Underwood Web Performance Optimization
 ### Udacity Nanodegree Project 4
+
+Link to [Chuck-Frontend-Nanodegree-Mobile-Portfolio/](http://chillieguy.github.io/Chuck-Frontend-Nanodegree-Mobile-Portfolio/) on Github Pages
+
 This project was challenging to get started.  The PageSpeed Insights scores above 90 were not difficult to achieve, but the code is not what I would condsider readable.  I am able to understand what is going on since I am the one that made the modifications.  It also does not seem to match up with what was learned in Protject 1 that included proper formatting and seperation of html and css.  Further research needed to help determine the line between readable code and optimization.  Also checking pages online most sites were not even above 80, so my guess is that this was an exercise to show how we do it, but we need use our judgement on how to apply the knowledge.
 
 All files included in Github repo even though they are duplicated with inline and minified versions for reference and future changes.
