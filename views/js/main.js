@@ -378,7 +378,7 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
   pizzaImageContainer.classList.add("col-md-6");
 
-  pizzaImage.src = "images/pizza.png";
+  pizzaImage.src = "images/pizza_mini.png";
   pizzaImage.classList.add("img-responsive");
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
@@ -495,6 +495,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+// Removing from function to check performance
+
+
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
@@ -502,13 +505,12 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
   var items = document.querySelectorAll('.mover');
-  //Move Calculation out of loop
   var moveAmount = Math.sin(document.body.scrollTop / 1250);
   for (var i = 0; i < items.length; i++) {
-    var phase =  moveAmount + (i % 5);
-    items[i].style.transform = 'translateX(' + (100 * phase) + 'px)';
+    //var phase =  moveAmount + (i % 5);
+    items[i].style.transform = 'translateX(' + (100 * moveAmount + (i % 5)) + 'px)';
+    //items[i].style.transform = 'translate3d(' + ((i % 8) * 256 + 100 * (moveAmount + (i % 5))) + 'px, 0px, 0px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -530,11 +532,13 @@ function createSlidingPizzas() {
   var s = 256;
   // Move out of loop to reduce step/calculation
   var slidingPizzaDiv = document.querySelector("#movingPizzas1");
-  for (var i = 0; i < 200; i++) {
+  slidingPizzaDiv.display = 'none';
+  for (var i = 0; i < 40 ; i++) {
     var elem = document.createElement('img');
+    
     elem.className = 'mover';
     // Try webp to reduce file size
-    elem.src = "images/pizza_mini.webp";
+    elem.src = "images/pizza_mini_slide.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     // Change to style.left to take advantage of transform.translateX
@@ -542,7 +546,8 @@ function createSlidingPizzas() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     slidingPizzaDiv.appendChild(elem);
   }
-  //updatePositions();
+  slidingPizzaDiv.display = 'block';
+  updatePositions();
 }
 
 //Try testing document.readystate for loading sliding pizzas
